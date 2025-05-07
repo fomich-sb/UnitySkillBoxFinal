@@ -1,0 +1,28 @@
+Event	ID	Name			Wwise Object Path	Notes
+	218580231	bonusBomba			\Default Work Unit\bonusBomba	
+	663055998	enemy1Dead			\Default Work Unit\enemy1Dead	
+	1057600524	bossDead			\Default Work Unit\bossDead	
+	1440863527	enemy1AttackExplode			\Default Work Unit\enemy1AttackExplode	
+	2356001030	bonus			\Default Work Unit\bonus	
+	2356585300	PlayerDead			\Default Work Unit\PlayerDead	
+	2538918815	PlayerShoot			\Default Work Unit\PlayerShoot	
+	2555063238	bossAttack			\Default Work Unit\bossAttack	
+	2667058160	enemy1Attack			\Default Work Unit\enemy1Attack	
+	3780370407	MusicBG			\Default Work Unit\MusicBG	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	988953028	SFXVolume			\Default Work Unit\SFXVolume	
+	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	169630418	bossAttack	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\DB\{DBFF9B76-A30A-1531-24D2-BEB1666F0A80}.wem		\Actor-Mixer Hierarchy\SFX\bossAttack		32284
+	284068251	enemy1AttackExplode	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\C5\{C5E331DB-E18D-8A50-4A40-4E7C2DA5DA23}.wem		\Actor-Mixer Hierarchy\SFX\enemy1AttackExplode		43508
+	485369674	bonus	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\F3\{F3D4D5E5-0686-E7C7-1213-C5EEAEEFA97D}.wem		\Actor-Mixer Hierarchy\SFX\bonus		624668
+	528819723	bonusBomba	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\0D\{0D43DBE9-8BAC-D081-EED8-6131A55ECA5F}.wem		\Actor-Mixer Hierarchy\SFX\bonusBomba		887324
+	709424691	playerShoot	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\32\{32922D7A-59BA-460F-261A-E303443C29D7}.wem		\Actor-Mixer Hierarchy\SFX\playerShoot		522592
+	757380084	playerDead	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\9E\{9E7E8D52-5847-DE14-D4B9-A2CC51186273}.wem		\Actor-Mixer Hierarchy\SFX\playerDead		203104
+	811474486	enemyDead1	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\F9\{F9394872-4838-CA01-1B8A-99E33FB5DAC3}.wem		\Actor-Mixer Hierarchy\SFX\enemyDead1		151782
+	841546810	bossDead	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\66\{66D9CD0F-DF79-1A6A-931E-238BC32D81FB}.wem		\Actor-Mixer Hierarchy\SFX\bossDead		373344
+	1040701107	enemy1Attack_1	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\EA\{EA99416E-9F71-BA3A-1D94-96951D7EE65B}.wem		\Actor-Mixer Hierarchy\SFX\enemy1Attack_1		31640
+	1045981479	bg (2)	C:\Users\Professional\Unity\SkillBoxFinal4\SkillBoxFinal4_WwiseProject\.cache\D3\{D381B701-F013-C810-414F-2641E4989576}.wem		\Actor-Mixer Hierarchy\Default Work Unit\bg (2)		38069276
+

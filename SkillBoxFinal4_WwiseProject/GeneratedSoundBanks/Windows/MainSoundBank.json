@@ -1,0 +1,266 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "534561221",
+    "Type": "User",
+    "GUID": "{1BACE1DA-D343-41FB-9E90-0B80384EDF19}",
+    "Language": "SFX",
+    "Hash": "{81598BD9-5EC2-EAA2-1907-C7094B862241}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\MainSoundBank",
+    "ShortName": "MainSoundBank",
+    "Path": "MainSoundBank.bnk",
+    "Media": [
+     {
+      "Id": "169630418",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "bossAttach.wav",
+      "CachePath": "DB/{DBFF9B76-A30A-1531-24D2-BEB1666F0A80}.wem"
+     },
+     {
+      "Id": "284068251",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "enemy1AttackExplode.wav",
+      "CachePath": "C5/{C5E331DB-E18D-8A50-4A40-4E7C2DA5DA23}.wem"
+     },
+     {
+      "Id": "485369674",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "bonus.wav",
+      "CachePath": "F3/{F3D4D5E5-0686-E7C7-1213-C5EEAEEFA97D}.wem"
+     },
+     {
+      "Id": "528819723",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "bonusBomba.wav",
+      "CachePath": "0D/{0D43DBE9-8BAC-D081-EED8-6131A55ECA5F}.wem"
+     },
+     {
+      "Id": "709424691",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "playerShoot.wav",
+      "CachePath": "32/{32922D7A-59BA-460F-261A-E303443C29D7}.wem"
+     },
+     {
+      "Id": "757380084",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "playerDead.wav",
+      "CachePath": "9E/{9E7E8D52-5847-DE14-D4B9-A2CC51186273}.wem"
+     },
+     {
+      "Id": "811474486",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "enemyDead1.wav",
+      "CachePath": "F9/{F9394872-4838-CA01-1B8A-99E33FB5DAC3}.wem"
+     },
+     {
+      "Id": "841546810",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "bossDead.wav",
+      "CachePath": "66/{66D9CD0F-DF79-1A6A-931E-238BC32D81FB}.wem"
+     },
+     {
+      "Id": "1040701107",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "enemy1Attack_1.wav",
+      "CachePath": "EA/{EA99416E-9F71-BA3A-1D94-96951D7EE65B}.wem"
+     },
+     {
+      "Id": "1045981479",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "bg (2).wav",
+      "CachePath": "D3/{D381B701-F013-C810-414F-2641E4989576}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "2356001030",
+      "Name": "bonus",
+      "ObjectPath": "\\Events\\Default Work Unit\\bonus",
+      "GUID": "{467623A8-B314-459E-9CEC-D09139CE2D5A}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "3.5406575",
+      "DurationMax": "3.5406575",
+      "MediaRefs": [
+       {
+        "Id": "485369674"
+       }
+      ]
+     },
+     {
+      "Id": "218580231",
+      "Name": "bonusBomba",
+      "ObjectPath": "\\Events\\Default Work Unit\\bonusBomba",
+      "GUID": "{1EB81D59-4F82-42EE-AADD-468DC02E5464}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "5.0296373",
+      "DurationMax": "5.0296373",
+      "MediaRefs": [
+       {
+        "Id": "528819723"
+       }
+      ]
+     },
+     {
+      "Id": "2555063238",
+      "Name": "bossAttack",
+      "ObjectPath": "\\Events\\Default Work Unit\\bossAttack",
+      "GUID": "{9E438F90-4CAC-4497-9F26-77AFE76C88F3}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "0.72988665",
+      "DurationMax": "0.72988665",
+      "MediaRefs": [
+       {
+        "Id": "169630418"
+       }
+      ]
+     },
+     {
+      "Id": "1057600524",
+      "Name": "bossDead",
+      "ObjectPath": "\\Events\\Default Work Unit\\bossDead",
+      "GUID": "{7458F5A0-A83F-4A0D-9E1D-A896D883E3E9}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "2.1159184",
+      "DurationMax": "2.1159184",
+      "MediaRefs": [
+       {
+        "Id": "841546810"
+       }
+      ]
+     },
+     {
+      "Id": "2667058160",
+      "Name": "enemy1Attack",
+      "ObjectPath": "\\Events\\Default Work Unit\\enemy1Attack",
+      "GUID": "{08CB2F9D-F6AE-4E30-8F64-404DFB65FF90}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "0.71528345",
+      "DurationMax": "0.71528345",
+      "MediaRefs": [
+       {
+        "Id": "1040701107"
+       }
+      ]
+     },
+     {
+      "Id": "1440863527",
+      "Name": "enemy1AttackExplode",
+      "ObjectPath": "\\Events\\Default Work Unit\\enemy1AttackExplode",
+      "GUID": "{92C6432E-AE28-451B-A471-ABBF742ADF86}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "1.9687982",
+      "DurationMax": "1.9687982",
+      "MediaRefs": [
+       {
+        "Id": "284068251"
+       }
+      ]
+     },
+     {
+      "Id": "663055998",
+      "Name": "enemy1Dead",
+      "ObjectPath": "\\Events\\Default Work Unit\\enemy1Dead",
+      "GUID": "{A33017E7-5A95-4D92-839E-148E51BBF174}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "1.719796",
+      "DurationMax": "1.719796",
+      "MediaRefs": [
+       {
+        "Id": "811474486"
+       }
+      ]
+     },
+     {
+      "Id": "3780370407",
+      "Name": "MusicBG",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicBG",
+      "GUID": "{723BD632-F10C-4506-AC39-6795E30A17CF}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "1045981479"
+       }
+      ]
+     },
+     {
+      "Id": "2356585300",
+      "Name": "PlayerDead",
+      "ObjectPath": "\\Events\\Default Work Unit\\PlayerDead",
+      "GUID": "{DFE31212-0A6D-4A25-B138-542EEEC655AC}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "1.150839",
+      "DurationMax": "1.150839",
+      "MediaRefs": [
+       {
+        "Id": "757380084"
+       }
+      ]
+     },
+     {
+      "Id": "2538918815",
+      "Name": "PlayerShoot",
+      "ObjectPath": "\\Events\\Default Work Unit\\PlayerShoot",
+      "GUID": "{C99F229E-FD5B-4369-8D86-866EF3817E66}",
+      "MaxAttenuation": "30.000002",
+      "DurationType": "OneShot",
+      "DurationMin": "2.9619954",
+      "DurationMax": "2.9619954",
+      "MediaRefs": [
+       {
+        "Id": "709424691"
+       }
+      ]
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "988953028",
+      "Name": "SFXVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SFXVolume",
+      "GUID": "{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}"
+     },
+     {
+      "Id": "2346531308",
+      "Name": "MusicVolume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\MusicVolume",
+      "GUID": "{264EE95D-7E55-456B-B2BF-8DC68C064AE8}"
+     }
+    ]
+   }
+  ],
+  "FileHash": "{2E5CDDEB-051B-CA04-837D-8B625ADD79D5}"
+ }
+}

@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}" SchemaVersion="123">
+	<AudioObjects>
+		<WorkUnit Name="SFX" ID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="bossAttack" ID="{0F7233FC-71B2-4E63-9F66-F50AAD6BA91C}" ShortID="669556919">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFX" ID="{29D12B46-9164-4002-A194-E9197E337A2C}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="bossAttach" ID="{49CA2120-866B-4C20-903D-8EC199D7A3E1}">
+							<Language>SFX</Language>
+							<AudioFile>bossAttach.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="169630418"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{CFEC8601-D584-48E5-B908-DF3378FA351F}" ShortID="1014439534">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{B976AFE2-6329-4AA4-B7F0-946F8CCAC114}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="bossAttach" ID="{49CA2120-866B-4C20-903D-8EC199D7A3E1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="enemyDead1" ID="{1AC9F71F-474A-438B-A5E1-06E55115B7EE}" ShortID="494239728">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="enemyDead1" ID="{75603462-C2B1-4D01-B30B-2AB7FA7A1721}">
+							<Language>SFX</Language>
+							<AudioFile>enemyDead1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="811474486"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{964258BC-DC91-45E9-90FF-32D7DD2A457A}" ShortID="405570336">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{608842FE-6018-4CE8-992B-A1F99BD20F0F}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="enemyDead1" ID="{75603462-C2B1-4D01-B30B-2AB7FA7A1721}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="bossDead" ID="{BF45BA21-BA5D-4BF9-86FE-504960B81103}" ShortID="357274634">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="bossDead" ID="{1805FCB5-7740-4F3D-B709-095316F987E8}">
+							<Language>SFX</Language>
+							<AudioFile>bossDead.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="841546810"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{3F501E95-906F-42EA-A3B4-ACA36F52A064}" ShortID="859025420">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{1CC8E336-F61C-4C18-B62F-2CE884D2AB3F}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="bossDead" ID="{1805FCB5-7740-4F3D-B709-095316F987E8}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="enemy1Attack_1" ID="{0EE9D13F-050F-4E2B-8382-BE9B2A478897}" ShortID="987471600">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-7</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="enemy1Attack_1" ID="{CFEDE618-1819-452A-A9E4-21CC37068015}">
+							<Language>SFX</Language>
+							<AudioFile>enemy1Attack_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="1040701107"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{C5EEE158-002F-4B49-9963-93FF6C4A5261}" ShortID="58958265">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{BD093319-EA03-44FB-8DE7-3524E24961AD}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="enemy1Attack_1" ID="{CFEDE618-1819-452A-A9E4-21CC37068015}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="playerDead" ID="{D525BEDC-7E12-4211-AF5F-EF00493B8414}" ShortID="463403494">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="playerDead" ID="{C1A58560-0A95-41AF-89EB-64C24FEE36A6}">
+							<Language>SFX</Language>
+							<AudioFile>playerDead.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="757380084"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{E80CCD1A-3A2D-4C1B-9775-C68282171ABB}" ShortID="1054309088">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{F2F743E7-4A07-4FAC-A70E-5BC202B5FF06}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="playerDead" ID="{C1A58560-0A95-41AF-89EB-64C24FEE36A6}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="playerShoot" ID="{4BD1652F-16C8-4FD3-8529-D53C06A1431F}" ShortID="776632327">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-13</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="playerShoot" ID="{B401C15A-0FF0-48D6-B80C-2433D49E9A10}">
+							<Language>SFX</Language>
+							<AudioFile>playerShoot.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="709424691"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{90834073-757E-43AB-834D-A0A753C59477}" ShortID="176367338">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{B0BC16F2-1175-4774-9ACD-B5FF88C08D9D}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="playerShoot" ID="{B401C15A-0FF0-48D6-B80C-2433D49E9A10}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="bonusBomba" ID="{9364E19D-68BB-4016-9F74-8BCFD0FC42AC}" ShortID="231410703">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="bonusBomba" ID="{F956CD83-E52D-4F11-ADE8-FCDC2D2F942C}">
+							<Language>SFX</Language>
+							<AudioFile>bonusBomba.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="528819723"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{980F821D-89BB-4F84-BA08-3CEEA10C6F81}" ShortID="488291275">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{7AA2F4CD-5163-4D69-B554-BE5E7337AC21}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="bonusBomba" ID="{F956CD83-E52D-4F11-ADE8-FCDC2D2F942C}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="bonus" ID="{BF2E3C21-DB7C-464C-9ED3-C890B7E866E3}" ShortID="430437646">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="bonus" ID="{31368BC3-DCC4-4AC8-99EC-4DF1EDA700ED}">
+							<Language>SFX</Language>
+							<AudioFile>bonus.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="485369674"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{7628F59F-A95A-4995-835D-617893993FF7}" ShortID="810381171">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{508D4641-07E2-4E7C-8A2B-0454260D209D}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="bonus" ID="{31368BC3-DCC4-4AC8-99EC-4DF1EDA700ED}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="enemy1AttackExplode" ID="{F21EF5B6-2732-418D-B621-FCBAEB60083F}" ShortID="926680388">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="1"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="0.3"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-7</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="New Attenuation" ID="{68966B5F-032D-42BC-BA96-7F8EECA09AF6}" WorkUnitID="{68FC5364-2FF3-4DC7-8526-ADE5DDBCBF92}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{FC8875B2-CE3D-4A1D-8AEA-037C5AF6AF26}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{D084D4DA-7D84-49F7-9648-4584445D2ABA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="enemy1AttackExplode" ID="{187B40B1-313D-4DC3-90A2-95E6034FA19E}">
+							<Language>SFX</Language>
+							<AudioFile>enemy1AttackExplode.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="284068251"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{C6A2C579-98C4-48A4-8361-F2BBA7DF64FD}" ShortID="828032497">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="SFXVolume" ID="{C1B2B73B-A6F7-4DBF-9BBF-3A9D0641BA1C}" WorkUnitID="{1CBBFA79-E4AD-4E96-8B55-307CB4C03945}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{46348E5E-60B1-4205-AAA9-D61742093070}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+					<ActiveSourceList>
+						<ActiveSource Name="enemy1AttackExplode" ID="{187B40B1-313D-4DC3-90A2-95E6034FA19E}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

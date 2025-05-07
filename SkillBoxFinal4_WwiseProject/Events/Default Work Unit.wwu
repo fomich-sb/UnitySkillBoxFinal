@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="PlayerShoot" ID="{C99F229E-FD5B-4369-8D86-866EF3817E66}">
+					<ChildrenList>
+						<Action Name="" ID="{8AE25698-11E7-4A38-999A-AE48FE865B88}" ShortID="392665420">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="playerShoot" ID="{4BD1652F-16C8-4FD3-8529-D53C06A1431F}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayerDead" ID="{DFE31212-0A6D-4A25-B138-542EEEC655AC}">
+					<ChildrenList>
+						<Action Name="" ID="{21D8809F-2137-43F1-88F5-080DD69DDF3B}" ShortID="73883945">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="playerDead" ID="{D525BEDC-7E12-4211-AF5F-EF00493B8414}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="bossAttack" ID="{9E438F90-4CAC-4497-9F26-77AFE76C88F3}">
+					<ChildrenList>
+						<Action Name="" ID="{481EBCC8-8614-4B3A-A610-CE0BE2D52ADD}" ShortID="74496066">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="bossAttack" ID="{0F7233FC-71B2-4E63-9F66-F50AAD6BA91C}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="bossDead" ID="{7458F5A0-A83F-4A0D-9E1D-A896D883E3E9}">
+					<ChildrenList>
+						<Action Name="" ID="{92C885EB-FBE5-4CCD-BAF1-87F4F9D723B4}" ShortID="850436797">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="bossDead" ID="{BF45BA21-BA5D-4BF9-86FE-504960B81103}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="enemy1Attack" ID="{08CB2F9D-F6AE-4E30-8F64-404DFB65FF90}">
+					<ChildrenList>
+						<Action Name="" ID="{7CB93F11-4A9A-4B5C-96C6-6C7266A5DE67}" ShortID="737193997">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="enemy1Attack_1" ID="{0EE9D13F-050F-4E2B-8382-BE9B2A478897}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="enemy1Dead" ID="{A33017E7-5A95-4D92-839E-148E51BBF174}">
+					<ChildrenList>
+						<Action Name="" ID="{157FCC73-3B56-4419-9567-19F575735303}" ShortID="276845432">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="enemyDead1" ID="{1AC9F71F-474A-438B-A5E1-06E55115B7EE}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="bonus" ID="{467623A8-B314-459E-9CEC-D09139CE2D5A}">
+					<ChildrenList>
+						<Action Name="" ID="{3D4216CA-BA12-4284-BE30-8CBD4DC1303D}" ShortID="954982422">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="bonus" ID="{BF2E3C21-DB7C-464C-9ED3-C890B7E866E3}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="bonusBomba" ID="{1EB81D59-4F82-42EE-AADD-468DC02E5464}">
+					<ChildrenList>
+						<Action Name="" ID="{58B7AFB8-630D-48AC-9051-2B2A64E34B2A}" ShortID="606113364">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="bonusBomba" ID="{9364E19D-68BB-4016-9F74-8BCFD0FC42AC}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MusicBG" ID="{723BD632-F10C-4506-AC39-6795E30A17CF}">
+					<ChildrenList>
+						<Action Name="" ID="{145DAB8E-EBFA-4218-B3C9-4D0E9F3F57E8}" ShortID="129091027">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="bg (2)" ID="{A00F3889-A85C-4306-86D0-283800593B40}" WorkUnitID="{8064B6D2-E2DA-4089-8DA4-AE07B9A0FC40}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="enemy1AttackExplode" ID="{92C6432E-AE28-451B-A471-ABBF742ADF86}">
+					<ChildrenList>
+						<Action Name="" ID="{154040A4-1243-4AF0-B2BB-E005029CC05A}" ShortID="204990166">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="enemy1AttackExplode" ID="{F21EF5B6-2732-418D-B621-FCBAEB60083F}" WorkUnitID="{8FDA0D84-22A8-435A-99B5-48D0E477BE6D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

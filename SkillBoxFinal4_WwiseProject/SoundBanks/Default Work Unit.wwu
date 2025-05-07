@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{E4B22965-FCB1-451C-AE24-B372D6F368AC}" SchemaVersion="123">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{E4B22965-FCB1-451C-AE24-B372D6F368AC}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="MainSoundBank" ID="{1BACE1DA-D343-41FB-9E90-0B80384EDF19}">
+					<ObjectInclusionList>
+						<ObjectRef Name="bonusBomba" ID="{1EB81D59-4F82-42EE-AADD-468DC02E5464}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayerShoot" ID="{C99F229E-FD5B-4369-8D86-866EF3817E66}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="bossAttack" ID="{9E438F90-4CAC-4497-9F26-77AFE76C88F3}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="MusicBG" ID="{723BD632-F10C-4506-AC39-6795E30A17CF}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="enemy1AttackExplode" ID="{92C6432E-AE28-451B-A471-ABBF742ADF86}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="bonus" ID="{467623A8-B314-459E-9CEC-D09139CE2D5A}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="bossDead" ID="{7458F5A0-A83F-4A0D-9E1D-A896D883E3E9}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayerDead" ID="{DFE31212-0A6D-4A25-B138-542EEEC655AC}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="enemy1Dead" ID="{A33017E7-5A95-4D92-839E-148E51BBF174}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="enemy1Attack" ID="{08CB2F9D-F6AE-4E30-8F64-404DFB65FF90}" WorkUnitID="{F284BB50-E056-4CA7-B120-5A9B5673DDD4}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>
