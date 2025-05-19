@@ -1,5 +1,8 @@
 <h1>Кооперативный PvE-шутер "Giantfall"</h1>
-Финальная работа по курсу SkillBox "Профессия Разработчик игр на Unity с нуля до Middle"<br>
+Финальная работа по курсу SkillBox "Профессия Разработчик игр на Unity с нуля до Middle"<br><br>
+
+Видео игры https://cloud.mail.ru/public/3BJJ/hVmBfpswm<br>
+Видео мультиплеера https://cloud.mail.ru/public/8jrL/mVJUjKAms<br>
 
 <h3>Использованные технологии и подходы:</h3>
 Unity URP – для рендеринга и оптимизированной графики<br>
