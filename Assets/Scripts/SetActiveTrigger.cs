@@ -5,7 +5,12 @@ namespace SkillBoxFinal
 {
     public class SetActiveTrigger : MonoBehaviour
     {
-        [Inject] private GameController _gameController;
+        private GameController _gameController;
+
+        private void Start()
+        {
+            _gameController = FindFirstObjectByType<GameController>();
+        }
 
         private void OnTriggerEnter(Collider other)
         {

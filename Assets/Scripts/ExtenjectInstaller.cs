@@ -15,6 +15,9 @@ namespace SkillBoxFinal
             Container.Bind<NetworkController>()
                 .FromComponentInHierarchy()
                 .AsSingle();
+            Container.Bind<NetworkEnemyController>()
+                .FromComponentInHierarchy()
+                .AsSingle();
             Container.Bind<NetworkPlayerController>()
                 .FromComponentInHierarchy()
                 .AsSingle();

@@ -84,8 +84,8 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   gravity: -50
   jumpImpulse: 8
-  acceleration: 15
-  braking: 15
+  acceleration: 50
+  braking: 50
   maxSpeed: 5
   rotationSpeed: 15
 --- !u!114 &493378907554382812
@@ -158,6 +158,7 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: ad65434ab7b170b45a2dc208eaad2746, type: 2}
+  animator: {fileID: 417461567747118607}
   MyLevelText: {fileID: 0}
   MyScoreText: {fileID: 0}
   MyHighDamageBulletsText: {fileID: 0}
@@ -165,7 +166,6 @@ MonoBehaviour:
   _gameController: {fileID: 0}
   active: 0
   MyPlayer: 0
-  animator: {fileID: 417461567747118607}
 --- !u!114 &6377978090200496404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _HealthValue: 0
   _ArmorValue: 0
-  _health: {fileID: 0}
 --- !u!114 &3834821051453587408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +225,10 @@ MonoBehaviour:
   baseInterval: 0.25
   HighDamageBulletK: 2
   ShootAnimation: {fileID: 2171343041128569081}
-  inputController: {fileID: 0}
+  wwiseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: bf2e745dec3851743b836dc2b487cb9e, type: 2}
   player: {fileID: 0}
   attack: 0
   attackDirection: {x: 0, y: 0, z: 0}
@@ -234,10 +236,6 @@ MonoBehaviour:
   ShootCnt: 0
   ShootGoodCnt: 0
   IsServer: 0
-  wwiseEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: bf2e745dec3851743b836dc2b487cb9e, type: 2}
 --- !u!1001 &331753839313018463
 PrefabInstance:
   m_ObjectHideFlags: 0

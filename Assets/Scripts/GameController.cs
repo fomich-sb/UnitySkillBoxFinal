@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 using Zenject.Asteroids;
@@ -78,15 +79,16 @@ namespace SkillBoxFinal
             SetStatus(GameStatus.Playing);
         }
 
-        public bool StartGame(int playerTypeNum, string playerName)
+        public bool StartGame(int playerTypeNum, int locationTypeNum, string playerName)
         {
             SetStatus(GameStatus.Loading);
-            if (_networkController.StartGame(playerTypeNum, playerName))
-            {
-                return true;
-            }
-            SetStatus(GameStatus.MainMenu);
-            return false;
+            _networkController.StartGame(playerTypeNum, locationTypeNum, playerName);
+            return true;
+            /*          {
+                          return true;
+                      }
+                      SetStatus(GameStatus.MainMenu);
+                      return false;*/
         }
 
         public void SetStatus(GameStatus gameStatus)

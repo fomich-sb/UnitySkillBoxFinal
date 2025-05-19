@@ -10,15 +10,14 @@ namespace SkillBoxFinal
     {
         [SerializeField] private GameObject bossPrefab;
         [SerializeField] private GameObject[] enemyPrefabs;
-        [SerializeField] private Transform[] enemySpawnPoints;
         [SerializeField] private int generatePeriod = 5;
 
+        private Vector3[] enemySpawnPointPositions;
         private float nextGenerateTime = 0;
         private Dictionary<NetworkPlayer, int> bossGenerated = new();
         private Dictionary<NetworkPlayer, NetworkObject> bossNO = new();
 
         [Inject] private readonly GameController gameController;
-        [Inject] private readonly NetworkBulletController networkBulletController;
 
 
         public override void FixedUpdateNetwork()
@@ -29,6 +28,13 @@ namespace SkillBoxFinal
             {
                 Generate();
             }
+        }
+
+        public void SetEnemySpawnPoints(Transform[] _enemySpawnPoints) {
+
+            enemySpawnPointPositions = new Vector3[_enemySpawnPoints.Length];
+            for(int i=0; i<_enemySpawnPoints.Length; i++)
+                enemySpawnPointPositions[i] = _enemySpawnPoints[i].position;
         }
 
         private void Generate()
@@ -71,10 +77,9 @@ namespace SkillBoxFinal
 
         private NetworkObject Spawn(GameObject prefab, int enemyVolume, NetworkPlayer networkPlayer)
         {
-            int spawnIndex = Random.Range(0, enemySpawnPoints.Length);
-            Transform spawn = enemySpawnPoints[spawnIndex];
-            Vector3 spawnPosition = spawn.position;
-            if (NavMesh.SamplePosition(spawn.position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
+            int spawnIndex = Random.Range(0, enemySpawnPointPositions.Length);
+            Vector3 spawnPosition = enemySpawnPointPositions[spawnIndex];
+            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
                 spawnPosition = hit.position;
             else
                 Debug.Log("Enemy не касается NavMesh");

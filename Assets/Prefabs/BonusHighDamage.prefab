@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fca6f011bc5a9f4380588a78396eb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Chance: 0.1
+  Chance: 0.15
   IsServer: 0
 --- !u!114 &95364497235302703
 MonoBehaviour:

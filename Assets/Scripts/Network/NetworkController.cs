@@ -2,36 +2,44 @@
 using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
+using static Unity.Collections.Unicode;
 
 namespace SkillBoxFinal
 {
     public class NetworkController : NetworkBehaviour, INetworkRunnerCallbacks 
     {
-
         [SerializeField] private NetworkRunner _runn;
+        [SerializeField] private string[] locationNames;
 
         [Inject] private InputController inputController;
         [Inject] private NetworkPlayerController _networkPlayerController;
 
         [HideInInspector] public delegate void OnConnectedContainer(bool isServer);
         [HideInInspector] public event OnConnectedContainer OnConnected;
-        private string _sessionName = "Room1";
+
 
 
         private void Awake()
         {
-            InitGame(GameMode.AutoHostOrClient);
+            
         }
 
-        async void InitGame(GameMode mode)
+
+        public void StartGame(int playerTypeNum, int locationTypeNum, string playerName)
+        { 
+            InitGame(GameMode.AutoHostOrClient, playerTypeNum, locationTypeNum, playerName);
+        }
+
+        async void InitGame(GameMode mode, int playerTypeNum, int locationTypeNum, string playerName)
         {
             _runn.AddCallbacks(this);
             _runn.ProvideInput = true;
 
-            // Create the NetworkSceneInfo from the current scene
             var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
             var sceneInfo = new NetworkSceneInfo();
             if (scene.IsValid)
@@ -43,30 +51,42 @@ namespace SkillBoxFinal
             var result = await _runn.StartGame(new StartGameArgs()
             {
                 GameMode = mode,
-                SessionName = _sessionName,
+                SessionName = locationNames[locationTypeNum],
                 Scene = scene,
                 SceneManager = gameObject.GetComponent<NetworkSceneManagerDefault>()
             });
 
             if (result.Ok)
             {
-                OnConnected(_runn.IsServer);
+                if (_runn.IsServer)
+                {
+                    await _runn.LoadScene(locationNames[locationTypeNum], LoadSceneMode.Additive);
+                    while (_runn.SceneManager.IsBusy)
+                    {
+                        await System.Threading.Tasks.Task.Delay(100); // Небольшая задержка
+                    }
+                }
+                else
+                    await System.Threading.Tasks.Task.Delay(1000); // Небольшая задержка
+
+                 OnConnected(_runn.IsServer);
+
+                _networkPlayerController.Spawn(playerTypeNum, playerName);
             }
             else
             {
-            Debug.Log("Runner Ошибка запуска!");
+                Debug.Log("Runner Ошибка запуска!");
             }
         }
 
 
-        public bool StartGame(int playerTypeNum, string playerName)
-        {
-            return _networkPlayerController.Spawn(playerTypeNum, playerName);
-        }
+
+
 
         public void ExitPlayer()
         {
             _networkPlayerController.RPC_Despawn(_runn.LocalPlayer);
+            _runn.LoadScene("PersistentScene", LoadSceneMode.Single);
         }
 
         public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)

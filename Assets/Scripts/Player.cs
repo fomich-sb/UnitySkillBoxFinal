@@ -89,9 +89,10 @@ namespace SkillBoxFinal
             if (TryGetComponent(out PlayerAttack pa))
                 pa.enabled = false;
 
-
+            Debug.Log(1);
             if (MyPlayer)
             {
+                Debug.Log(2);
                 NetworkPlayer np = GetComponent<NetworkPlayer>();
                 _gameController.GameOverLevelText.text = "Уровень: " + np.Level.ToString();
                 _gameController.GameOverScoreText.text = "Очки: " + np.Score.ToString();
@@ -102,7 +103,8 @@ namespace SkillBoxFinal
         }
         public void UpdateGameOverStat(int ShootCnt, int ShootGoodCnt)
         {
-            if(ShootCnt>0)
+            Debug.Log(ShootCnt);
+            if (ShootCnt>0)
                 _gameController.GameOverShootingAccuracyText.text = "Точность стрельбы " + Mathf.Round(100f * ShootGoodCnt / ShootCnt) + "%";
         }
     }

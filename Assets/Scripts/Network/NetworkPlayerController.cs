@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XInput;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace SkillBoxFinal
@@ -9,12 +10,17 @@ namespace SkillBoxFinal
     public class NetworkPlayerController : NetworkBehaviour 
     {
         [SerializeField] private GameObject[] playerPrefabs;
-        [SerializeField] private Transform PlayerSpawnPoint;
+        private Vector3 PlayerSpawnPointPosition;
 
         [HideInInspector] public Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
         [Inject] private readonly GameController _gameController;
 
-      
+        public void SetPlayerSpawnPoint(Transform _playerSpawnPoint)
+        {
+            PlayerSpawnPointPosition = _playerSpawnPoint.position;
+        }
+
+
         public bool Spawn(int playerTypeNum, string playerName)
         {
             RPC_Spawn(Runner.LocalPlayer, playerTypeNum, playerName);
@@ -28,7 +34,7 @@ namespace SkillBoxFinal
         {
             if (!playerPrefabs[playerTypeNum]) return;
 
-            Vector3 spawnPosition = PlayerSpawnPoint.position + (new Vector3(-1 + playerRef.RawEncoded, 0, 0));
+            Vector3 spawnPosition = PlayerSpawnPointPosition + (new Vector3(-1 + playerRef.RawEncoded, 0, 0));
 
 
             NetworkObject playerObj = Runner.Spawn(

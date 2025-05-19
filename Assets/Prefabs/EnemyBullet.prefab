@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damageValue: 5
-  explosionRadius: 2
+  explosionRadius: 4
   Effect: {fileID: 3114013038779743534}
   _playerLayerMask:
     serializedVersion: 2
