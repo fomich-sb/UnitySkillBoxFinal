@@ -14,9 +14,9 @@ namespace SkillBoxFinal
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent<Player>(out var player))
+            if (other.gameObject.TryGetComponent<IPlayer>(out var player))
             {
-                player.active = true;
+                player.Active = true;
                 _gameController.UpdateActivePlayers();
             }
         }

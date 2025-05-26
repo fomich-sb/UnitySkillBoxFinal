@@ -2,18 +2,18 @@ using UnityEngine;
 
 namespace SkillBoxFinal
 {
-    public class Bonus : MonoBehaviour
+    public class Bonus : MonoBehaviour, IBonus
     {
-        public float Chance = 0.1f;
-        [HideInInspector] public bool IsServer = false;
-        private NetworkBonus networkBonus;
+        public float Chance { get; set; } = 0.1f;
+        [HideInInspector] public bool IsServer { get; set; } = false;
+        private INetworkBonus networkBonus;
         private Camera _mainCamera;
 
 
         private void Start()
         {
             _mainCamera = Camera.main;
-            networkBonus = GetComponent<NetworkBonus>();
+            networkBonus = GetComponent<INetworkBonus>();
         }
 
         private void Update()
@@ -23,9 +23,8 @@ namespace SkillBoxFinal
 
         private void OnTriggerEnter(Collider other)
         {
-            if (networkBonus && other)
+            if (other)
                 networkBonus.Action(other.gameObject);
-                
         }
     }
 }

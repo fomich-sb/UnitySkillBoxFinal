@@ -22,6 +22,7 @@ namespace SkillBoxFinal
 
         [Inject] private Settings _settings;
         [Inject] private GameController gameController;
+        [Inject] private UIController uIController;
 
         private void Awake()
         {
@@ -92,7 +93,7 @@ namespace SkillBoxFinal
 
         private void OnExit(InputAction.CallbackContext context)
         {
-            gameController.OpenSettings();
+            uIController.OpenSettings();
         }
     }
 }

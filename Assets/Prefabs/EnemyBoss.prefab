@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 447798712298502685}
   - component: {fileID: 9190277516685563205}
   - component: {fileID: 4023723077227579803}
+  - component: {fileID: -151083085511636088}
   m_Layer: 7
   m_Name: EnemyBoss
   m_TagString: Untagged
@@ -107,9 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69e9fd1f5b9ca24097c76197c318d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HealthValue: 0
-  _ArmorValue: 0
-  _health: {fileID: 0}
+  _Value: 100
 --- !u!114 &5210519854420980086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthTextMesh: {fileID: 7087364823971577057}
   ShootHitAnimation: {fileID: 4469286211546425232}
-  MyHealthText: {fileID: 0}
-  MyArmorText: {fileID: 0}
+  MyPlayer: 0
 --- !u!195 &-7868726465629998868
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -189,7 +187,6 @@ MonoBehaviour:
   IsBoss: 1
   IsDead: 0
   networkEnemy: {fileID: 0}
-  animator: {fileID: 0}
   targetPlayerTransform: {fileID: 0}
   targetPlayerNetworkHealth: {fileID: 0}
   TargetPlayerPlayer: {fileID: 0}
@@ -263,6 +260,19 @@ MonoBehaviour:
   _interpolationSpeed: 5
   _NetworkedPosition: {x: 0, y: 0, z: 0}
   _NetworkedRotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &-151083085511636088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3218294115775796978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721bad9a0b0c99945962df2ed541a026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &4182194037697124039
 PrefabInstance:
   m_ObjectHideFlags: 0

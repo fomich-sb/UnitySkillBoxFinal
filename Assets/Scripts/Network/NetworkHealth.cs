@@ -1,77 +1,83 @@
 using Fusion;
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace SkillBoxFinal
 {
-    public class NetworkHealth : NetworkBehaviour
+    public class NetworkHealth : NetworkBehaviour, IDamageable, IHealthSystem
     {
-        [Networked, OnChangedRender(nameof(OnHealthChanged))] public float HealthValue { get; set; }
-        [Networked, OnChangedRender(nameof(OnHealthChanged))] public float ArmorValue { get; set; }
+        [Networked, OnChangedRender(nameof(OnHealthChanged))] public float Value { get; set; } = 100f;
 
-        [HideInInspector] public delegate void OnDeadContainer();
-        [HideInInspector] public event OnDeadContainer OnDead;
-        private Health _health;
-        private bool _dead=false;
+        public bool IsDead { get; private set; } = false;
 
-        public void Init(float healthValue = 100, float armorValue = 0)
+        private readonly float max = 100f;
+        private IArmorSystem armorable;
+
+        public event Action OnChange;
+        public event Action OnDead;
+
+        override public void Spawned()
         {
-            HealthValue = healthValue;
-            ArmorValue = armorValue;
+            armorable = GetComponent<IArmorSystem>();
+            OnChange?.Invoke();
         }
 
-        public override void Spawned()
+        public void Init(float healthValue = 100)
         {
-            _health = GetComponent<Health>();
-            _health.Display(HealthValue, ArmorValue);
-        }
+            Value = healthValue;
+        } 
 
         private void OnHealthChanged()
         {
-            Display();
-            if (HealthValue <= 0)
+            OnChange?.Invoke();
+            if (Value <= 0)
             {
-                _dead = true;
-                OnDead();
+                IsDead = true;
+                OnDead?.Invoke();
             }
         }
 
-        public bool Damage(float damage)
+        public bool Damage(float damage, float limit = 0)
         {
-            if (_dead) return false;
+            if (IsDead) return false;
             damage = Mathf.Abs(damage);
             float damageRest = damage;
-            if (ArmorValue > 0)
-            {
-                damageRest -= Mathf.Min(ArmorValue, damage);
-                ArmorValue -= Mathf.Min(ArmorValue, damage);
-            }
+            if (armorable != null)
+                damageRest = armorable.ReduceDamage(damageRest);
 
-            if (HealthValue <= damageRest)
+            damageRest = Mathf.Min(damageRest, Value - limit);
+
+            if (Value <= damageRest)
             {
-                HealthValue = 0;
+                Value = 0;
                 return true;
             }
             else
-                HealthValue -= damageRest;
+                Value -= damageRest;
 
             return false;
         }
 
-        public void AddHealth(float value)
+        public bool AddHealth(float value)
         {
-            if (_dead) return;
-            HealthValue = Mathf.Min(100, HealthValue + value);
+            if (IsDead || Value >= max) return false;
+            Value = Mathf.Min(max, Value + value);
+            return true;
         }
 
-        public void AddArmor(float value)
+        public void ReInit(float healthValue)
         {
-            if (_dead) return;
-            ArmorValue = Mathf.Min(100, ArmorValue + value);
+            Value = healthValue;
+            IsDead = false;
+            RPC_ReInit();
         }
 
-        public void Display()
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void RPC_ReInit()
         {
-            _health.Display(HealthValue, ArmorValue);
+            IsDead = false;
         }
     }
 }

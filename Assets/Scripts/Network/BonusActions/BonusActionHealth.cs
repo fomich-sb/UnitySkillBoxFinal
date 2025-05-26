@@ -1,5 +1,6 @@
 using Fusion;
 using UnityEngine;
+using Zenject;
 
 namespace SkillBoxFinal
 {
@@ -7,16 +8,16 @@ namespace SkillBoxFinal
     {
         [SerializeField] private float Value = 100;
         [SerializeField] private AK.Wwise.Event wwiseEvent;
+        [Inject] private IBonusFactory _bonusFactory;
 
         public bool Action(NetworkObject playerNO)
         {
-            if (playerNO.TryGetComponent(out NetworkHealth h))
+            if (playerNO.TryGetComponent(out IHealthSystem h))
             {
-                if (h.HealthValue < 100)
+                if (h.AddHealth(Value))
                 {
-                    h.AddHealth(Value);
                     RPC_Effect();
-                    GetComponent<NetworkBonus>().Despawn();
+                    _bonusFactory.RecycleBonus(GetComponent<NetworkObject>());
                     return true;
                 }
             }

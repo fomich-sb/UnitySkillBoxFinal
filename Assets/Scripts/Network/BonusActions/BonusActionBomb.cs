@@ -1,5 +1,6 @@
 using Fusion;
 using UnityEngine;
+using Zenject;
 
 namespace SkillBoxFinal
 {
@@ -10,20 +11,22 @@ namespace SkillBoxFinal
         [SerializeField] private LayerMask EnemyLayerMask;
         [SerializeField] private ParticleSystem Effect;
         [SerializeField] private AK.Wwise.Event wwiseEvent;
+        [Inject] private IBonusFactory _bonusFactory;
 
         public bool Action(NetworkObject playerNO)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, BombRadius, EnemyLayerMask);
             foreach (Collider hit in colliders)
             {
-                NetworkHealth networkHealth = hit.GetComponent<NetworkHealth>();
-                if (networkHealth != null)
+                IDamageable damageable = hit.GetComponent<IDamageable>();
+                if (damageable != null)
                 {
                     float damageValue = (BombRadius - Vector3.Distance(hit.transform.position, transform.position)) / BombRadius * BombDamage;
-                    Enemy enemy = hit.GetComponent<Enemy>();
-                    if (enemy && enemy.IsBoss)
-                        damageValue = Mathf.Min(damageValue, networkHealth.HealthValue-1);
-                    networkHealth.Damage(damageValue);
+                    IEnemy enemy = hit.GetComponent<IEnemy>();
+                    if (enemy is not null && enemy.IsBoss)
+                        damageable.Damage(damageValue, 1);
+                    else
+                        damageable.Damage(damageValue);
                 }
             }
 
@@ -43,7 +46,7 @@ namespace SkillBoxFinal
 
         private void Despawn()
         {
-            GetComponent<NetworkBonus>().Despawn();
+            _bonusFactory.RecycleBonus(GetComponent<NetworkObject>());
         }
     }
 }

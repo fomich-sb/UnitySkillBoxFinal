@@ -10,12 +10,13 @@ namespace SkillBoxFinal
     {
         [SerializeField] private GameObject bossPrefab;
         [SerializeField] private GameObject[] enemyPrefabs;
-        [SerializeField] private int generatePeriod = 5;
+        [SerializeField] private int generatePeriod = 5; 
+        [Inject] private IEnemyFactory _enemyFactory;
 
         private Vector3[] enemySpawnPointPositions;
         private float nextGenerateTime = 0;
-        private Dictionary<NetworkPlayer, int> bossGenerated = new();
-        private Dictionary<NetworkPlayer, NetworkObject> bossNO = new();
+        private Dictionary<INetworkPlayer, int> bossGenerated = new();
+        private Dictionary<INetworkPlayer, NetworkObject> bossNO = new();
 
         [Inject] private readonly GameController gameController;
 
@@ -56,7 +57,7 @@ namespace SkillBoxFinal
                     int enemyPrefabIndex = Random.Range(0, enemyPrefabs.Length);
                     GameObject prefab = enemyPrefabs[enemyPrefabIndex];
 
-                    Spawn(prefab, enemyVolume, networkPlayer);
+                    Spawn(prefab, enemyVolume, networkPlayer, false);
 
                     enemyVolumeSum -= enemyVolume;
                 }
@@ -65,39 +66,41 @@ namespace SkillBoxFinal
                     bossGenerated.Add(networkPlayer, 0);
                     bossNO.Add(networkPlayer, null);
                 }
-                if (!bossNO[networkPlayer] || bossGenerated[networkPlayer] < networkPlayer.Level)
+                if (!bossNO[networkPlayer] || !bossNO[networkPlayer].gameObject.activeSelf || bossGenerated[networkPlayer] < networkPlayer.Level)
                 {
-                    NetworkObject enemyNO = Spawn(bossPrefab, 30 + bossGenerated[networkPlayer] * 5, networkPlayer);
-                    bossGenerated[networkPlayer]++;
+                    NetworkObject enemyNO = Spawn(bossPrefab, 30 + bossGenerated[networkPlayer] * 5, networkPlayer, true);
+                    if(bossGenerated[networkPlayer] < networkPlayer.Level)
+                        bossGenerated[networkPlayer]++;
                     bossNO[networkPlayer] = enemyNO;
                 }
             }
 
         }
 
-        private NetworkObject Spawn(GameObject prefab, int enemyVolume, NetworkPlayer networkPlayer)
+        private NetworkObject Spawn(GameObject prefab, int enemyVolume, INetworkPlayer networkPlayer, bool isBoss)
+        {
+            Vector3 spawnPosition = GetEnemySpawnPosition();
+            NetworkObject enemyObj = _enemyFactory.CreateEnemy(
+                prefab,
+                spawnPosition,
+                (networkPlayer as MonoBehaviour).gameObject,
+                enemyVolume,
+                isBoss
+            );
+            return enemyObj;
+        }
+
+        private Vector3 GetEnemySpawnPosition(int attempt=0)
         {
             int spawnIndex = Random.Range(0, enemySpawnPointPositions.Length);
             Vector3 spawnPosition = enemySpawnPointPositions[spawnIndex];
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
-                spawnPosition = hit.position;
-            else
-                Debug.Log("Enemy не касается NavMesh");
-
-            NetworkObject enemyObj = Runner.Spawn(
-                prefab.GetComponent<NetworkObject>(),
-                spawnPosition,
-                Quaternion.identity,
-                onBeforeSpawned: (runner, obj) =>
-                {
-                    obj.GetComponent<NetworkHealth>().Init(enemyVolume);
-                    obj.GetComponent<Enemy>().Init(networkPlayer.gameObject);
-                    obj.GetComponent<NetworkEnemy>().Init(spawnPosition);
-                    obj.GetComponent<NavMeshAgent>().enabled = true;
-                    obj.GetComponent<EnemyMove>().enabled = true;
-                }
-            );
-            return enemyObj;
+                return hit.position;
+            
+            Debug.Log("Enemy не касается NavMesh. " + spawnPosition.ToString());
+            if(attempt<3)
+                return GetEnemySpawnPosition(attempt++);
+            return Vector3.zero;
         }
     }
 }

@@ -1,17 +1,20 @@
 using Fusion;
+using TMPro;
 using UnityEngine;
 
 namespace SkillBoxFinal
 {
-    public class NetworkBonus : NetworkBehaviour
+    public class NetworkBonus : NetworkBehaviour, INetworkBonus
     {
         [Networked] private Vector3 Position { get; set; }
         private IBonusAction _action;
         private bool isActive=true;
+        public GameObject Prefab { get; set; }
 
-        public void Init(Vector3 pos)
+        public void Init(Vector3 pos, GameObject prefab)
         {
             Position = pos;
+            Prefab = prefab;
         }
 
         override public void Spawned()
@@ -39,9 +42,17 @@ namespace SkillBoxFinal
             }
         }
 
-        public void Despawn()
+        public void ReInit(Vector3 pos)
         {
-            Runner.Despawn(GetComponent<NetworkObject>());
+            Position = pos;
+            RPC_ReInit(pos);
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void RPC_ReInit(Vector3 pos)
+        {
+            transform.position = pos;
+            isActive = true;
         }
     }
 }

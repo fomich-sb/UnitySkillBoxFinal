@@ -1,20 +1,26 @@
 using Fusion;
+using System;
 using UnityEngine;
+using Zenject;
 
 namespace SkillBoxFinal
 {
-    public class NetworkPlayer : NetworkBehaviour
+    public class NetworkPlayer : NetworkBehaviour, IHighDamageBulletsSystem, INetworkPlayer
     {
         [Networked, HideInInspector] public string Name { get; set; }
         [Networked, OnChangedRender(nameof(OnLevelChanged)), HideInInspector] public int Level { get; set; }
         [Networked, OnChangedRender(nameof(OnScoreChanged)), HideInInspector] public int Score { get; set; }
         [Networked, OnChangedRender(nameof(OnHighDamageBulletsChanged)), HideInInspector] public int HighDamageBullets { get; set; }
 
-        private Player player;
+        public event Action OnInfoChanged;
+
+        private IPlayerInfoDisplay playerInfoDisplay;
+
+        [Inject] private UIController uIController;
 
         override public void Spawned()
         {
-            player = GetComponent<Player>();
+            playerInfoDisplay = GetComponent<IPlayerInfoDisplay>();
             OnNameChanged();
             Level = 1;
             OnLevelChanged();
@@ -24,38 +30,45 @@ namespace SkillBoxFinal
 
         private void OnNameChanged()
         {
-            player.SetName(Name);
+            playerInfoDisplay.DisplayName(Name);
         }
 
         private void OnLevelChanged()
         {
-            player.DisplayLevel(Level);
+            playerInfoDisplay.DisplayLevel(Level);
+            OnInfoChanged?.Invoke();
         }
         private void OnScoreChanged()
         {
-            player.DisplayScore(Score);
+            playerInfoDisplay.DisplayScore(Score);
+            OnInfoChanged?.Invoke();
         }
         private void OnHighDamageBulletsChanged()
         {
-            player.DisplayHighDamageBullets(HighDamageBullets);
+            playerInfoDisplay.DisplayHighDamageBullets(HighDamageBullets);
+            OnInfoChanged?.Invoke();
         }
 
         public void AddLevel()
         {
             Level++;
         }
+        public void RequestGameOverStat()
+        {
+            RPC_RequestGameOverStat();
+        }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         public void RPC_RequestGameOverStat()
         {
-            PlayerAttack p = GetComponent<PlayerAttack>();
+            IPlayerAttack p = GetComponent<IPlayerAttack>();
             RPC_UpdateGameOverStat(p.ShootCnt, p.ShootGoodCnt);
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
         private void RPC_UpdateGameOverStat(int ShootCnt, int ShootGoodCnt)
         {
-            player.UpdateGameOverStat(ShootCnt, ShootGoodCnt);
+            uIController?.UpdateGameOverStat(ShootCnt, ShootGoodCnt);
         }
     }
 }

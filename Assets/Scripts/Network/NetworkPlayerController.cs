@@ -1,8 +1,7 @@
 ﻿using Fusion;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace SkillBoxFinal
@@ -10,10 +9,16 @@ namespace SkillBoxFinal
     public class NetworkPlayerController : NetworkBehaviour 
     {
         [SerializeField] private GameObject[] playerPrefabs;
-        private Vector3 PlayerSpawnPointPosition;
 
         [HideInInspector] public Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
+        private Vector3 PlayerSpawnPointPosition;
+
+        [Inject] private IPlayerFactory _playerFactory;
         [Inject] private readonly GameController _gameController;
+
+        public event Action OnSpawn;
+        public event Action OnDespawn;
 
         public void SetPlayerSpawnPoint(Transform _playerSpawnPoint)
         {
@@ -37,25 +42,13 @@ namespace SkillBoxFinal
             Vector3 spawnPosition = PlayerSpawnPointPosition + (new Vector3(-1 + playerRef.RawEncoded, 0, 0));
 
 
-            NetworkObject playerObj = Runner.Spawn(
-                playerPrefabs[playerTypeNum].GetComponent<NetworkObject>(),
-                spawnPosition,
-                Quaternion.identity,
-                playerRef,
-                onBeforeSpawned: (runner, obj) =>
-                {
-                    obj.GetComponent<NetworkHealth>().Init(100);
-                    obj.GetComponent<NetworkPlayer>().Name = playerName;
-                    obj.GetComponent<Player>()._gameController = _gameController;
-                    obj.GetComponent<PlayerAttack>().IsServer = true;
-                }
-            );
+            NetworkObject playerObj = _playerFactory.CreatePlayer(playerPrefabs[playerTypeNum], spawnPosition, playerRef, playerName);
 
             _spawnedCharacters.Add(playerRef, playerObj);
 
             RPC_AssignPlayerToClient(playerRef, playerObj);
 
-            _gameController.UpdateActivePlayers();
+            OnSpawn?.Invoke();
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
@@ -73,10 +66,10 @@ namespace SkillBoxFinal
         {
             if (_spawnedCharacters.ContainsKey(player))
             {
-                Runner.Despawn(_spawnedCharacters[player]);
+                _playerFactory.RecyclePlayer(_spawnedCharacters[player]);
                 _spawnedCharacters.Remove(player);
-                _gameController.UpdateActivePlayers();
             }
+            OnDespawn?.Invoke();
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

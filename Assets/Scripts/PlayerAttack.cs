@@ -10,7 +10,7 @@ using Zenject;
 
 namespace SkillBoxFinal
 {
-    public class PlayerAttack : MonoBehaviour
+    public class PlayerAttack : MonoBehaviour, IPlayerAttack
     {
         [SerializeField] private float baseDamage = 1;
         [SerializeField] private float baseInterval = 0.25f;
@@ -18,68 +18,37 @@ namespace SkillBoxFinal
         [SerializeField] private ParticleSystem ShootAnimation;
         [SerializeField] private AK.Wwise.Event wwiseEvent;
 
-        [HideInInspector] public Player player;
-        [HideInInspector] public bool attack;
+        [HideInInspector] public IPlayer player;
+        [HideInInspector] public bool Attack { get; set; }
         [HideInInspector] public Vector3 attackDirection;
         [HideInInspector] public Vector3 attackPosition;
         private float lastShootTime = 0;
-        private int layerMask;
-        private Player _player;
-        private NetworkPlayer _networkPlayer;
-        private NetworkPlayerAttack _networkPlayerAttack;
+        private IPlayer _player;
+        private INetworkPlayer _networkPlayer;
+        private INetworkPlayerAttack _networkPlayerAttack;
+        private IPlayerDetectTarget _playerDetectTarget;
 
-        [HideInInspector] public int ShootCnt = 0;
-        [HideInInspector] public int ShootGoodCnt = 0;
-        [HideInInspector] public bool IsServer = false;
+        [HideInInspector] public int ShootCnt { get; set; } = 0;
+        [HideInInspector] public int ShootGoodCnt { get; set; } = 0;
+        [HideInInspector] public bool IsServer { get; set; } = false;
 
-        private InputController inputController;
 
         private void Start()
         {
-            layerMask = ~(1 << LayerMask.NameToLayer("Players")) &
-                ~(1 << LayerMask.NameToLayer("Ignore Raycast"));
-            _player = GetComponent<Player>();
-            _networkPlayer = GetComponent<NetworkPlayer>();
-            _networkPlayerAttack = GetComponent<NetworkPlayerAttack>();
-            inputController = FindFirstObjectByType<InputController>();
+            _player = GetComponent<IPlayer>();
+            _networkPlayer = GetComponent<INetworkPlayer>();
+            _networkPlayerAttack = GetComponent<INetworkPlayerAttack>();
+            _playerDetectTarget = GetComponent<IPlayerDetectTarget>();
         }
 
         private void Update()
         {
-            if (_player.active && attack && Time.time - lastShootTime > GetCurrentInterval())
+            if (_player.Active && Attack && Time.time - lastShootTime > GetCurrentInterval())
             {
                 if(_player.MyPlayer)
-                    DetectTarget();
+                    _playerDetectTarget.DetectTarget();
                 Shoot();
             }
-        }
-
-        private bool DetectTarget()
-        {
-            Ray shootRay = new Ray(
-                inputController.attackPosition,
-                inputController.attackDirection
-            );
-            NetworkObject hitNetworkObject = null;
-            if (Physics.Raycast(shootRay, out RaycastHit hit, 100, layerMask))
-            {
-                if (hit.collider.gameObject.TryGetComponent(out NetworkHealth networkHealth))
-                {
-                    if (hit.collider.gameObject.TryGetComponent(out Health health))
-                    {
-                        health.ShootHitAnimation.transform.position = hit.point;
-                        health.ShootHitAnimation.Play();
-                    }
-                    hitNetworkObject = hit.collider.gameObject.GetComponent<NetworkObject>();
-                }
-            }
-
-            if (_networkPlayerAttack.HitNetworkObject != hitNetworkObject)
-            {
-                _networkPlayerAttack.RPC_SetHitObject(hitNetworkObject);
-                return true;
-            }
-            return false;
         }
 
         public void Shoot()
@@ -91,16 +60,22 @@ namespace SkillBoxFinal
             {
 
                 ShootCnt++;
-                if (_networkPlayerAttack.HitNetworkObject && _networkPlayerAttack.HitNetworkObject.TryGetComponent(out NetworkHealth networkHealth))
+                if (_networkPlayerAttack.HitNetworkObject && _networkPlayerAttack.HitNetworkObject.TryGetComponent(out IDamageable damageable))
                 {
+                    Debug.Log("KILL");
                     ShootGoodCnt++;
-                    if (networkHealth.Damage(GetCurrentDamage()))
+                    if (damageable.Damage(GetCurrentDamage()))
                     {
-                        if (_networkPlayerAttack.HitNetworkObject.TryGetComponent(out Enemy enemy))
+                        Debug.Log("KILL2");
+                        if (_networkPlayerAttack.HitNetworkObject.TryGetComponent(out IEnemy enemy))
                         {
+                            Debug.Log("KILL3");
                             _networkPlayer.Score += enemy.Score;
                             if (enemy.IsBoss)
+                            {
+                                Debug.Log("KILL4");
                                 _networkPlayer.AddLevel();
+                            }
                         }
                     }
                 }
@@ -112,12 +87,12 @@ namespace SkillBoxFinal
             lastShootTime = Time.time;
         }
 
-        public float GetCurrentInterval()
+        private float GetCurrentInterval()
         {
             return baseInterval / (0.5f + 0.5f / _networkPlayer.Level);
         }
 
-        public float GetCurrentDamage()
+        private float GetCurrentDamage()
         {
             float damage = baseDamage * (1 + 0.1f * _networkPlayer.Level);
             if (_networkPlayer.HighDamageBullets > 0)

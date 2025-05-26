@@ -13,20 +13,22 @@ namespace SkillBoxFinal
         [SerializeField] private AK.Wwise.Event wwiseEvent;
 
         private float _lastAttackTime = 0;
-        private Enemy _enemy;
+        private IEnemy _enemy;
+        private IEnemyAnimator enemyAnimator;
 
         private void Start()
         {
-            _enemy = GetComponent<Enemy>();
+            _enemy = GetComponent<IEnemy>();
+            enemyAnimator = GetComponent<IEnemyAnimator>();
         }
 
         private void Update()
         {
-            if (_enemy.IsDead || _enemy.TargetPlayerPlayer.IsDead) return;
+            if (_enemy.IsDead || _enemy.TargetPlayerPlayer is null || _enemy.TargetPlayerPlayer.IsDead) return;
 
             if (_enemy.TargetPlayer && _enemy.targetPlayerDistance < distance && Time.time - _lastAttackTime > period)
             {
-                _enemy.targetPlayerNetworkHealth.Damage(damageValue);
+                _enemy.targetIDamageable.Damage(damageValue);
                 _lastAttackTime = Time.time;
 
                 if (wwiseEvent != null)
@@ -34,15 +36,9 @@ namespace SkillBoxFinal
             }
 
             if (_enemy.TargetPlayer && _enemy.targetPlayerDistance < distance)
-            {
-                _enemy.animator.SetBool("move", false);
-                _enemy.animator.SetBool("attack", true);
-            }
+                enemyAnimator.SetAttack();
             else
-            {
-                _enemy.animator.SetBool("move", true);
-                _enemy.animator.SetBool("attack", false);
-            }
+                enemyAnimator.SetMove();
         }
     }
 }

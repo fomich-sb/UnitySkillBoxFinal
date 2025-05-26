@@ -22,14 +22,6 @@ namespace SkillBoxFinal
         [HideInInspector] public delegate void OnConnectedContainer(bool isServer);
         [HideInInspector] public event OnConnectedContainer OnConnected;
 
-
-
-        private void Awake()
-        {
-            
-        }
-
-
         public void StartGame(int playerTypeNum, int locationTypeNum, string playerName)
         { 
             InitGame(GameMode.AutoHostOrClient, playerTypeNum, locationTypeNum, playerName);
@@ -79,14 +71,13 @@ namespace SkillBoxFinal
             }
         }
 
-
-
-
-
         public void ExitPlayer()
         {
             _networkPlayerController.RPC_Despawn(_runn.LocalPlayer);
-            _runn.LoadScene("PersistentScene", LoadSceneMode.Single);
+            if(_runn.IsServer)
+                _runn.LoadScene("PersistentScene", LoadSceneMode.Single); 
+            else
+                SceneManager.LoadScene("PersistentScene", LoadSceneMode.Single);
         }
 
         public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)

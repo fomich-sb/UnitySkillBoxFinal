@@ -9,13 +9,13 @@ namespace SkillBoxFinal
         [SerializeField] private float updatePathRate = 2f;
 
         private NavMeshAgent navMeshAgent;
-        private Enemy enemy;
+        private IEnemy enemy;
         private float _lastUpdatePathTime;
 
         private void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
-            enemy = GetComponent<Enemy>();
+            enemy = GetComponent<IEnemy>();
         }
 
         private void Update()
@@ -25,7 +25,7 @@ namespace SkillBoxFinal
                 navMeshAgent.isStopped = true;
                 return;
             }
-
+            navMeshAgent.isStopped = false;
             if (Time.time - _lastUpdatePathTime > updatePathRate * (enemy.targetPlayerDistance > 5 ? 3 : 1) )
             {
                 if (enemy.targetPlayerTransform)

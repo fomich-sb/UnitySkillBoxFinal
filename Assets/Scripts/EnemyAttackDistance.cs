@@ -12,19 +12,18 @@ namespace SkillBoxFinal
         [SerializeField] private float period = 2f;
         [SerializeField] private Transform bulletSpawnTransform;
 
-        private NetworkBulletController networkBulletController;
+        [Inject] private NetworkBulletController networkBulletController;
         private float _lastAttackTime = 0;
-        private Enemy _enemy;
+        private IEnemy _enemy;
 
         private void Start()
         {
-            _enemy = GetComponent<Enemy>();
-            networkBulletController = FindFirstObjectByType<NetworkBulletController>();
+            _enemy = GetComponent<IEnemy>();
         }
 
         private void Update()
         {
-            if (_enemy.IsDead || _enemy.TargetPlayerPlayer.IsDead) return;
+            if (_enemy.IsDead || _enemy.TargetPlayerPlayer is null || _enemy.TargetPlayerPlayer.IsDead) return;
 
             if (_enemy.TargetPlayer && _enemy.targetPlayerDistance < distance && Time.time - _lastAttackTime > period)
             {

@@ -1,28 +1,24 @@
 using Fusion;
 using UnityEngine;
+using Zenject;
+using static UnityEditor.PlayerSettings;
 
 namespace SkillBoxFinal
 {
     public class NetworkBulletController : NetworkBehaviour
     {
         [SerializeField] private NetworkObject _bulletPrefab;
+        [Inject] private IBulletFactory _bulletFactory;
 
         public void Despawn(NetworkObject no)
         {
-            Runner.Despawn(no);
+            _bulletFactory.RecycleBullet(no);
+            //Runner.Despawn(no);
         }
 
         public void Shoot(Vector3 spawnPosition, Vector3 targetPosition)
         {
-            NetworkObject bulletObj = Runner.Spawn(
-                _bulletPrefab,
-                spawnPosition,
-                Quaternion.identity,
-                onBeforeSpawned: (runner, obj) =>
-                {
-                    obj.GetComponent<NetworkEnemyBullet>().Init(spawnPosition, targetPosition);
-                }
-            );
+            _bulletFactory.CreateBullet(_bulletPrefab.gameObject, spawnPosition, targetPosition);
         }
     }
 }

@@ -1,4 +1,5 @@
 using Fusion;
+using System.Data;
 using UnityEngine;
 
 namespace SkillBoxFinal
@@ -6,12 +7,12 @@ namespace SkillBoxFinal
     public class NetworkPlayerMove : NetworkBehaviour
     {
         private NetworkCharacterController _networkCharacterController;
-        private Player player;
+        private IPlayerAnimator playerAnimation;
 
         public override void Spawned()
         {
             _networkCharacterController = GetComponent<NetworkCharacterController>();
-            player = GetComponent<Player>();
+            playerAnimation = GetComponent<IPlayerAnimator>();
         }
 
         public override void FixedUpdateNetwork()
@@ -24,21 +25,7 @@ namespace SkillBoxFinal
 
                 _networkCharacterController.Move(direction * Runner.DeltaTime);
 
-                if(direction==Vector3.zero)
-                {
-                    player.animator.SetFloat("left", 0);
-                    player.animator.SetFloat("forward", 0);
-                }
-                else if(Mathf.Abs(direction.z) >= Mathf.Abs(direction.x))
-                {
-                    player.animator.SetFloat("left", 0);
-                    player.animator.SetFloat("forward", direction.z > 0 ? -1 : 1);
-                }
-                else
-                {
-                    player.animator.SetFloat("left", direction.x > 0 ? -1 : 1);
-                    player.animator.SetFloat("forward", 0);
-                }
+                playerAnimation?.UpdateStatus(direction);
             }
         }
     }

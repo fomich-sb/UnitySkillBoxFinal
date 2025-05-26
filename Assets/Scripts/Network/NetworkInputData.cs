@@ -5,5 +5,5 @@ public struct NetworkInputData : INetworkInput
 {
     public Vector2 moveDirection;
     public float lookRotateY;
-      public bool attack;
+    public bool attack;
 }

@@ -1,11 +1,12 @@
 using Fusion;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
 namespace SkillBoxFinal
 {
-    public class EnemyBullet : MonoBehaviour
+    public class EnemyBullet : MonoBehaviour, IEnemyBullet
     {
         [SerializeField] private float speed = 10f;
         [SerializeField] private float damageValue = 5f;
@@ -15,14 +16,14 @@ namespace SkillBoxFinal
         [SerializeField] private AK.Wwise.Event wwiseEvent;
         [SerializeField] private AK.Wwise.Event wwiseEventExplode;
 
+        [HideInInspector] public Vector3 TargetPosition { get; set; }
         private bool hasExploded = false;
-        private NetworkEnemyBullet _networkEnemyBullet;
+
+        public event Action OnDespawn;
 
 
         private void Start()
         {
-            _networkEnemyBullet = GetComponent<NetworkEnemyBullet>();
-
             if (wwiseEvent != null)
                 wwiseEvent.Post(gameObject);
         }
@@ -33,17 +34,17 @@ namespace SkillBoxFinal
 
             transform.position = Vector3.MoveTowards(
                 transform.position,
-                _networkEnemyBullet.TargetPosition,
+                TargetPosition,
                 speed * Time.deltaTime
             );
 
-            if (Vector3.Distance(transform.position, _networkEnemyBullet.TargetPosition) < 0.1f)
+            if (Vector3.Distance(transform.position, TargetPosition) < 0.1f)
             {
                 Explode();
             }
         }
 
-        void Explode()
+        private void Explode()
         {
             if (hasExploded) return;
 
@@ -54,9 +55,9 @@ namespace SkillBoxFinal
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, _playerLayerMask);
             foreach (Collider hit in colliders)
             {
-                if (hit.TryGetComponent<NetworkHealth>(out var networkHealth))
+                if (hit.TryGetComponent<IDamageable>(out var damageable))
                 {
-                    networkHealth.Damage((explosionRadius - Vector3.Distance(hit.transform.position, transform.position))/explosionRadius * damageValue);
+                    damageable.Damage((explosionRadius - Vector3.Distance(hit.transform.position, transform.position))/explosionRadius * damageValue);
                 }
             }
             Invoke(nameof(Despawn), 0.1f);
@@ -64,13 +65,22 @@ namespace SkillBoxFinal
 
         private void Despawn()
         {
-            _networkEnemyBullet.Despawn();
+            gameObject.SetActive(false);
+            OnDespawn?.Invoke();
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (hasExploded) return;
             Explode();
+        }
+
+        public void Init(Vector3 pos, Vector3 targetPosition)
+        {
+            hasExploded = false;
+            transform.position = pos;
+            TargetPosition = targetPosition;
+            gameObject.SetActive(true);
         }
     }
 }
